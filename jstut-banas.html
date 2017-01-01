@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+<!--Bootstrap
+<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+-->
   <head>
     <!--link JS source
     <script src="jstut-banas.js"></script>
@@ -8,8 +11,8 @@
     <meta charset="utf-8" />
     <style type="text/css">
       body {font-size: 1.2em;}
-      .hidden {display.none}
-      .show {display.inline !important;}
+      .hidden {display:none;}
+      .show {display:inline !important;}
       button {
         border: 2px solid black; background: #E5E4E2;
         font-family: Roboto-mono, Arial Thin;
@@ -179,12 +182,296 @@
     tomSmith.shift(); // shift first one off
     tomSmith.unshift("Tom Smith");  // unshift first one on
     //for loop to display the whole array
-    for(i = 0; i < tomSmith.length; i++) {
+    for (i = 0; i < tomSmith.length; i++) {
       document.write(tomSmith[i], "<br />");
     }
 
     //functions
+    // check if a value is inside an array
+    function inArray(arrayToCheck, value) {
+      for (i = 0; i < arrayToCheck.length; i++) {
+        if (arrayToCheck[i] === value) {
+          return true;
+        }
+      }
+      return false;
+    }
+    var randArray = [1, 2, 3,4 ,5];
+    document.write("In Array : ", inArray(randArray, 5), "<br />");
 
+    function times2(num) {
+      var var2 = 2;
+      return num * var2;
+    }
+    //document.write("var2", var2, "<br />"); // var2 is not accessible outside of function (local variable)
+
+    function times3(num) {
+      return num * 3;
+    }
+
+    function multiply(func, num) {
+      return func(num); // call a function inside a function
+    }
+
+    var triple = function(num) {
+      return num * 3;
+    }
+
+    document.write("3 * 45 = ", multiply(triple, 45), "<br />");
+    document.write("2 * 15 = ", multiply(times2, 15), "<br />");
+    document.write("3 * 15 = ", multiply(times3, 15), "<br />");
+
+    // this function loops through all args and sum them
+    function getSum() {
+      var sum = 0;
+      for (i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+      }
+      return sum;
+    }
+    document.write("Sum = ", getSum(1,2,3,4,5,6), "<br />");
+
+    // doubles the values of the input array and save it to a new array
+    function times2(theArray) {
+      var newArray = [];
+      for (i = 0; i < theArray.length; i++) {
+        newArray.push(theArray[i] * 2);
+      }
+      return newArray;
+    }
+    document.write("Array Double = ", times2([1,2,3,4,5,6]).toString(), "<br />");
+
+    // recursive function, a function that calls itself
+    function factorial(num) {
+      if(num <= 1){
+        return 1;
+      } else {
+        return num * factorial(num - 1);  // when a function only executes for certain values, it can be called inside its construct
+      }
+    }
+    document.write("Factorial of 4 = ", factorial(4), "<br />");
+
+    // event handling
+    function openAlert(mess) {
+      alert(mess);
+    }
     </script>
+    <!--Event handling with HTML+JS-->
+    <a href="JavaScript:void(0)" onclick="alert('Hello');">Say Hello</a><br />  <!-- JavaScript:void(0) avoids reloading the whole page-->
+    <a href="JavaScript:void(0)" onclick="openAlert('Hi How are you?');">Say Hi</a><br />  <!-- JavaScript:void(0) avoids reloading the whole page-->
+    <!--Mouse interactions-->
+    <a href="JavaScript:void(0)" onmouseover="this.style.color='red'"
+    onmouseout="this.style.color='blue'"
+    ondblclick="this.text='You Double clicked me'"
+    onmousedown="this.text='Don\'t Press too hard'"
+    onmouseup="this.text='Thank you'">Make me Red</a><br />  <!-- JavaScript:void(0) avoids reloading the whole page-->
+    <!--user input and confirmation-->
+    <input type="text" id="randInput" onchange="var dataEntered=document.getElementById('randInput').value; alert('User Typed ' + dataEntered)"/>
+
+    <form action="#" id="sampForm">
+      <input id="charInput" type="text" />
+      <p id="keyData">Key Data Here</p>
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form><br /><br />
+
+    <img src="logo.png" id="logo" />
+    <button id="logoButton">Get Logo</button>
+    <input id="mouseInput" type="text" size="30"/><br />
+
+    Mouse X: <input type="text" id="mouseX"/><br />
+    Mouse Y: <input type="text" id="mouseY"/><br />
+
+    <button id="clearInputs">Clear Inputs</button>
+
+  <script> // JS code below
+    function getChar(event) {
+      if(event.which == null) { // return the key/mouse button pushed
+        return String.fromCharCode(event.keyCode);  // get the keycode of the event
+      } else if (event.which != 0 && event.charCode != 0) { // for IE
+        return String.fromCharCode(event.which);  // for all non-IE browsers
+      } else {
+        return null;  // if unidentified character code is pushed, return null
+      }
+    }
+    document.getElementById('charInput').onkeypress = // if a key is pressed in charInput
+      function(event) {
+        var char = getChar(event || window.event);  // for IE
+        if(!char) return false;
+        document.getElementById('keyData').innerHTML = char + " was clicked"; // output to screen which key was clicked
+        return true;
+      }
+      document.getElementById('charInput').onfocus = function(event) {  // use .onfocus to trigger event
+        document.getElementById('keyData').innerHTML = "Input Gained Focus";  // output specific message
+      }
+      document.getElementById('charInput').onselect = function(event) {  // use .onselect to trigger event
+        document.getElementById('keyData').innerHTML = "Text Highlighted";  // output specific message
+      }
+      document.getElementById('logoButton').onclick = function(event) {
+        document.getElementById('logo').className = "show";
+      }
+      document.getElementById('logo').onclick = function(event) {
+        document.getElementById('logo').className = "hidden";
+      }
+      document.getElementById('logo').onmouseover = function(event) {
+        document.getElementById('logo').src = "logo-invert.png";
+        document.getElementById('mouseInput').value = "Mouse Over Image";
+      }
+      document.getElementById('logo').onmouseout = function(event) {
+        document.getElementById('logo').src = "logo.png";
+        document.getElementById('mouseInput').value = "Mouse Left Image";
+      }
+// track mouse position relative to the page
+document.body.onmousemove = function(event) {
+  event = event || window.event;
+  var pageX = event.pageX;
+  var pageY = event.pageY;
+
+  if (pageX === undefined) {
+    pageX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft; // track X coordinate
+    pageY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop; // track Y coordinate
+  }
+  document.getElementById('mouseX').value = pageX;
+  document.getElementById('mouseY').value = pageY;
+}
+// remove all texts in input HTML elements
+document.getElementById('clearInputs').onclick = function(event) {
+  var inputElements = document.getElementsByTagName('input');
+  for (var i = 0; i < inputElements.length; i++){
+    if(inputElements[i].type == "text"){
+      inputElements[i].value = "";
+    }
+  }
+}
+  </script>
+<!---ELEMENT STYLING-->
+<!-- See all of them here http://www.w3schools.com/jsref/dom_obj_style.asp -->
+<div id="sampDiv">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget turpis eget quam luctus malesuada ut ac nulla. Suspendisse fermentum magna neque, a auctor felis pretium eget. Fusce ornare feugiat magna, ut faucibus sapien congue ut. Nunc nec fringilla ex, nec varius nisl. Ut eget laoreet nisi. Aenean quis venenatis mauris, at volutpat ante. Donec sollicitudin lacinia ornare. In quis accumsan ligula, id egestas
+</div>
+<button id="chgBkColor">Background Color</button>
+<button id="chgBkImg">Background Image</button>
+<button id="chgBorderStyle">Border Style</button>
+<button id="chgBorderWidth">Border Width</button>
+<button id="chgBorderColor">Border Color</button>
+
+<script>
+// Change background Color
+document.getElementById('chgBkColor').onclick = function(event){
+  document.getElementById('sampDiv').style.backgroundcolor = "#EFDECD";
+}
+// Change background Image
+document.getElementById('chgBkImg').onclick = function(event){
+  document.getElementById('sampDiv').style.backgroundImage = "url('wood-bg.png')";
+}
+// Change background Image
+document.getElementById('chgBorderStyle').onclick = function(event){
+  document.getElementById('sampDiv').style.borderStyle = "solid";
+}
+// Change background Image
+document.getElementById('chgBorderWidth').onclick = function(event){
+  document.getElementById('sampDiv').style.borderWidth = "thick";
+}
+// Change background Image
+document.getElementById('chgBorderColor').onclick = function(event){
+  document.getElementById('sampDiv').style.borderColor = "blue";
+}
+</script>
+<!-- ---------- MANIPULATING THE DOM ---------- -->
+
+<div id="sampDiv2"><p>Lorem ipsum dolor sit amet, <em>consectetur adipiscing</em>
+  elit. Proin eget turpis eget quam luctus malesuada ut ac nulla.
+  Suspendisse fermentum magna neque, a auctor felis pretium eget.
+  Fusce ornare feugiat magna, ut faucibus sapien congue ut. Nunc nec fringilla ex, nec varius nisl.
+  Ut eget laoreet nisi. Aenean quis venenatis mauris, at volutpat ante.
+  Donec sollicitudin lacinia ornare. In quis accumsan ligula, id egestas enim.</p>
+  <p>Lorem ipsum dolor sit amet, <b>consectetur adipiscing</b> elit.
+    Proin eget turpis eget quam luctus malesuada ut ac nulla.
+    Suspendisse fermentum magna neque, a auctor felis pretium eget.
+    <em>Fusce ornare</em> feugiat magna, ut faucibus sapien congue ut.
+    <b>Nunc nec fringilla</b> ex, nec varius nisl.</p></div>
+
+<img src="logo.png" id="logo2" alt="SMG Logo" height="180" width="180"><br />
+
+<button id="goToGoogle">Go to Google</button><br />
+
+<button id="forwardPage">Forward Page</button><br />
+
+<button id="backPage">Back Page</button><br />
+
+<button id="reload">Reload Page</button><br />
+
+<script type="text/javascript">
+// Get current web page info
+document.write("Current URL : ", window.location.href, "<br />");
+document.write("Current HOST : ", window.location.hostname, "<br />");
+document.write("Current Path : ", window.location.pathname, "<br />");
+// Change site on button click
+document.getElementById('goToGoogle').onclick = function(event) {
+  window.location.href = "http://google.com";
+  // OR
+  // window.location.assign("http://google.com");
+}
+// Go forward a page on click
+document.getElementById('forwardPage').onclick = function(event) {
+  history.forward();
+}
+// Go back a page on click
+document.getElementById('backPage').onclick = function(event) {
+  history.back();
+}
+// Use histroy.go(-2) or history .go(2) to jump multiple pages
+// Reload page on button click
+document.getElementById('reload').onclick = function(event) {
+  window.location.reload(true);
+}
+// You can target all <p/> tags and then manipulate them like an array
+var pElements = document.getElementsByTagName('p');
+pElements[3].style.backgroundColor = "#EFDECD";
+
+// Target the html
+document.childNodes[1].style.backgroundColor = "#FAEBD7";
+
+// Change the color of the 1st child in sampDiv2
+var sampDiv2 = document.getElementById('sampDiv2');
+sampDiv2.childNodes[0].style.backgroundColor = "#F0FFFF";
+
+// Style the 1st child of sampDivs 1st child
+sampDiv2.childNodes[0].childNodes[1].style.backgroundColor = "#BFAFB2";
+
+// JavaScript can get confused by text nodes when targeting elements
+// Text nodes are whitespace, which nodeType will identify with a 3
+// while elements as a 1
+// You can eliminate text nodes by deleting whitespace or by using a
+// minimizer (lastChild and firstChild may not work)
+//
+document.write("Node Type : ", sampDiv2.childNodes[0].childNodes[0].nodeType, "<br />");
+
+document.write("Node Name : ", sampDiv2.childNodes[0].childNodes[1].nodeName, "<br />");
+
+sampDiv2.childNodes[0].childNodes[1].style.backgroundColor = "#BFAFB2";
+// Check for attributes
+var smgLogo2 = document.getElementById('logo2');
+document.write("Logo has alt : ", smgLogo2.hasAttribute("alt"), "<br />");
+// Change attributes
+smgLogo2.setAttribute("alt", "SMG Logo2");
+// Get attributes
+document.write("Logo alt value : ", smgLogo2.getAttribute("alt"), "<br />");
+// Get all attributes and print them
+var attribList = document.getElementById('logo2').attributes;
+
+for(i = 0; i < attribList.length; i++){
+  document.write("Attribute ", i, " : ", attribList[i].nodeName, " : ", attribList[i].nodeValue, "<br />");
+}
+
+var paragraph3 = document.createElement("p");
+
+paragraph3.setAttribute("id", "paragraph3");
+paragraph3.innerHTML = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+sampDiv2.appendChild(paragraph3);
+
+sampDiv2.insertBefore(paragraph3, sampDiv2.childNodes[0]);
+
+</script>
   </body>
 </html>
