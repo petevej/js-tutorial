@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--link JS source
+    <script src="jstut-banas.js"></script>
+    -->
+    <title>JavaScript Tutorial by Derek Banas</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      body {font-size: 1.2em;}
+      .hidden {display.none}
+      .show {display.inline !important;}
+      button {
+        border: 2px solid black; background: #E5E4E2;
+        font-family: Roboto-mono, Arial Thin;
+        font-size: .5em; font-weight: bold; color: #000;
+        padding: .8em 2em;
+        margin-top: .4em;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="sayHello"></p>
+    <script>
+    // var yourName = prompt("What is your name?");   // prompts user to enter name and save to var
+    var yourName = "Pete";
+    if(yourName != null) {
+      document.getElementById("sayHello").innerHTML = "Hello " + yourName;  // returns element with matching id and change its HTML content
+    } else {
+      alert("Please enter a name next time");
+    }
+    document.write("How are you today " + yourName + "?", "<br />");
+    document.write("5 + 4 = ", 5 + 4, "<br />");    // maths operation
+    document.write("5 + 4 = " + 5 + 4, "<br />");   // string concatenation with +
+    document.write("5 - 4 = ", 5 - 4, "<br />");    // maths operation
+    document.write("5 * 4 = ", 5 * 4, "<br />");    // maths operation
+    document.write("5 / 4 = ", 5 / 4, "<br />");    // maths operation
+    document.write("5 % 4 = ", 5 % 4, "<br />");    // maths operation
+    document.write("<br />");
+
+    // operations with decimal places
+    var balance = 1563.832343;
+    document.write("Monthly Payment : ", (balance/12).toFixed(2), "<br />");  // toFixed rounds to 2 deimcal places
+    document.write("<br />");
+
+    // increment
+    var randNum = 5;
+    document.write("randNum++ = ", randNum++, "<br />"); // xxx++ prints first then increment
+    document.write(randNum, "<br />");                  // incremented value
+    document.write("++randNum = ", ++randNum, "<br />"); // ++xxx increments fist then print
+    document.write("randNum += 5 = ", randNum += 5, "<br />");  // increment and store
+    document.write("randNum -= 5 = ", randNum -= 5, "<br />");
+    document.write("randNum *= 5 = ", randNum *= 5, "<br />");
+    document.write("randNum /= 5 = ", randNum /= 5, "<br />");
+    document.write("<br />");
+
+    // maths
+    document.write("Math.ceil(6.45) = ", Math.ceil(6.45), "<br />");
+    document.write("Math.floor(6.45) = ", Math.floor(6.45), "<br />");
+    document.write("Math.round(6.45) = ", Math.floor(6.45), "<br />");
+    document.write("<br />");
+
+    // random numbers
+    document.write("Random # (1-10) = ", Math.floor(Math.random() * 10) + 1, "<br />");   // for random number multiply Math.random() by (Range+1) and add Min
+    document.write("<br />");
+
+    // convert between strings and numbers
+    document.write("Convert String to Number : ", Number("3.14"), "<br />");
+    document.write("Convert String to Integer: ", parseInt("5.243"), "<br />");
+    document.write("Convert String to Float: ", parseFloat("6.23234"), "<br />");
+    document.write("<br />");
+
+    // string operations
+    var randStr = "A long " + "string that " + "goes on and on";  // concatenate
+    document.write("String Length ", randStr.length + "<br />");  // .length property
+    document.write("Index for \"goes\" : ", randStr.indexOf("goes"), "<br />");   // .indexOf method to find the location of a word
+    document.write("randStr.slice(19, 23) : ", randStr.slice(13, 23), "<br />");   // .slice(a,b) method to extract characters
+    document.write("randStr.slice(19) : ", randStr.slice(19), "<br />");  // slice to EOS
+    document.write("randStr.substr(19, 4) : ", randStr.substr(19, 4), "<br />");  // .substr(start, len)
+    document.write("randStr.repalce('string', 'that's what she said') : ", randStr.replace("string", "that's what she said"), "<br />");
+    var randStrArray = randStr.split(" ");  // .split method splits strings into array
+    console.log(randStrArray);
+    randStr = randStr.trim(); // trim white spaces around it
+    console.log(randStr);
+    document.write("<br />");
+
+    // string styling
+    var strToStyle = "Random String";
+    document.write("Big : ", strToStyle.big(), "<br />");
+    document.write("Bold : ", strToStyle.bold(), "<br />");
+    document.write("Font Color : ", strToStyle.fontcolor("blue"), "<br />");
+    document.write("Italics : ", strToStyle.italics(), "<br />");
+    document.write("Google Link : ", strToStyle.link("http://google.com"), "<br />");
+    document.write("Small : ", strToStyle.small(), "<br />");
+    document.write("Strike : ", strToStyle.strike(), "<br />");
+    document.write("Sub : ", strToStyle.sub(), "<br />");
+    document.write("Sup : ", strToStyle.sup(), "<br />");
+    document.write("<br />");
+
+    // switch statement
+    var age = 5;
+    switch(age) {
+      case 5:
+      case 6:
+        document.write("Go to Kindergarten" + "<br />");
+        break;
+
+      case 7:
+        document.write("Go to 1st grade" + "<br />");
+        break;
+
+      default:
+        document.write("Subtract 5 from your age" + "<br />");
+    }
+
+    // in-line conditional statement
+    var canIVote = (age <= 18) ? true : false;
+    document.write(canIVote + "<br />");
+    document.write("<br />");
+
+    // while loop
+    var i = 1;
+    while(i <= 10) {
+      document.write(i + "<br />");
+      i++;  // don't forget this to avoid infinite loop
+    }
+
+    // do while loop
+    /*
+    do {
+      var guess = prompt("Guess an number between 1 and 20");
+    } while(guess != 15)  // keep doing sth if guess != 15
+    alert("You guessed 15!"); // exit and alart if 15 was guessed
+    */
+    // for loop is all self-contained
+    for(j = 0; j <= 20; j++) {
+      if((j % 2) === 0) {
+        continue;   // if j is even, continue looping without doing anything
+      }
+      if(j === 15) {
+        break;    //  break if hit 15
+      }
+      document.write(j + "<br />"); // prints j if it's odd
+    }
+
+    // for-in loop with object
+    var customer = {name : "Bob Thomas", address : "123 Main", balance : 50.50}
+    for (k in customer) {
+      document.write(customer[k] + "<br />");
+    }
+
+    //arrays
+    var tomSmith = ["Tom Smith", "123 Main", 120.05];
+    document.write("1st Index is: ", tomSmith[0], "<br />");
+    tomSmith[3] = "tSmith@gmail.com";
+    tomSmith.splice(2, 1, "Puttsburgh", "PA", "male");    // .splice overrides index 2 and overrides 1 element
+    console.log(tomSmith);
+    tomSmith.splice(4, 1);  // this simply deletes index 4 "male"
+    console.log(tomSmith);
+
+    //separates array into a string
+    document.write("Array : ", tomSmith.valueOf(), "<br />"); // .valueOf converts array into a string
+    document.write("Array : ", tomSmith.join(", "), "<br />");  // .join converts array into a string with the space
+
+    delete tomSmith[3]; // delete index 3
+    tomSmith.sort();
+
+    //sort
+    var numbers = [4, 3, 9, 1, 20, 43];
+    numbers.sort(function(x,y){ return x - y});   // sort function x-y is ascending y-x is decending
+    document.write("Num Array : ", numbers.toString(), "<br />"); //.toString converts an array into a string and sort it
+
+    //combine
+    var combinedArray = numbers.concat(tomSmith);
+
+    //pop, push, shift, unshift
+    tomSmith.pop(); // pop one off the end
+    tomSmith.push("555-1212", "US");  // push two to the end
+    tomSmith.shift(); // shift first one off
+    tomSmith.unshift("Tom Smith");  // unshift first one on
+    //for loop to display the whole array
+    for(i = 0; i < tomSmith.length; i++) {
+      document.write(tomSmith[i], "<br />");
+    }
+
+    //functions
+
+    </script>
+  </body>
+</html>
