@@ -1,6 +1,8 @@
 # Some important bits from Jon Duckett's Javascript And J Query Book
 ## Chapter 5 - Document Object Model
 
+![alt text](http://i.kinja-img.com/gawker-media/image/upload/t_original/794026551144186516.jpg "JS and jQuery Book")
+
 **How to work through this book:**
 *Read through the whole chapter mindfully and try to understand everything first, then come back to the 1st page and work through the exercise one-by-one. When doing exercise, cover the code first and read the code explanation, then try to code your own solution and test before checking the answer*
 
@@ -289,6 +291,7 @@ $(document).ready(function(){
 ```
 ### Interactive Shopping List App
 
+[Try the full App here](http://javascriptbook.com/code/c07/example.html)
 #### HTML Code:
 ```HTML
 <!DOCTYPE html>
