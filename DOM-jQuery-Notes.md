@@ -11,7 +11,6 @@
 ```Javascript
 getElementById()  // Select element with matching ID - this is usually fastest
 document.getElementById('one')  // use the id method to search the whole document object matching the parameter "one"
-
 ```
 ```Javascript
 querySelector()   // Select element with certain CSS selector (class/ID)
