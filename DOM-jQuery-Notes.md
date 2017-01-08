@@ -1,4 +1,4 @@
-# Some important bits from Jon Duckett's Javascript And J Query Book
+# (Part I) Some important bits from Jon Duckett's JavaScript And jQuery Book
 ## Chapter 5 - Document Object Model
 
 ![alt text](http://i.kinja-img.com/gawker-media/image/upload/t_original/794026551144186516.jpg "JS and jQuery Book")
