@@ -77,15 +77,9 @@ This chapter explores AJAX technology which allows isolated update of the page. 
 
 The JSON object is an array and can be converted to a string using **JSON.stringify()** method. **JSON.parse()** on the other hand, converts JSON data into a JavaScript object ready to be used by the browser.
 
-### 5. Loading HTML with AJAX
+### 5. Loading HTML/XML/JSON/JSONP with AJAX
 
-### 6. Loading XML with AJAX
-
-### 7. Loading JSON with AJAX
-
-### 8. Using JSONP (JASON with Padding)
-
-### 9. jQuery & AJAX requests
+### 6. jQuery & AJAX requests
 
 There are 6 ways that jQuery can be used to make AJAX requests:
 
@@ -118,19 +112,51 @@ JQXHR METHODS | DESCRIPTION
 .always() | run code for all outcomes
 .abort() | halt the communication
 
-### 10. Loading HTML into a page with jQuery
+#### Loading HTML into a page with jQuery
 
-Anatomy of a .load() method:
+Loading with .load() method is the simplest way to use jQuery AJAX. Anatomy of a .load() method goes something like this:
 
 ```JavaScript
 $('#content').load('jq-ajax3.html #content');
 ```
-**$('#content')** - creates a jQuery object with ID #content
+**$('#content')**   - creates a jQuery object with ID #content
 
 **'jq-ajax3.html'** - URL of the source page
 
-**#content** - fragment of the HTML source page
+**#content**        - fragment of the HTML source page
 
-### 11. Loading content
+#### jQuery's AJAX Shorthand methods
 
-pg. 398
+There are four shortcuts in jQuery for this:
+
+METHOD | DESCRIPTION
+------ | ------------
+$.get(url[, data][, callback][, type])  | HTTP GET request for data
+$.post(url[, data][, callback][, type]) | HTTP POST to update data on the server
+$.getJSON(url[, data][, callback])  | Loads JSON data using GET request
+$.getScript(url[, callback])  | Loads and executes JS using a GET request
+
+**url**       - source of data for AJAX
+
+**data (optional)**      - extra info to be sent to server
+
+**callback (optional)**  - function to be called when data is fetched
+
+**type (optional)**      - type of data from server
+
+#### Sending forms using AJAX
+
+jQuery provides a way to post form data: .serialize() method for collecting form data and $.post() method for sending it.
+
+```JavaScript
+.serialize()    // this method selects all the info from the form and stringify it. Best used with <form> element and its children.
+```
+#### Loading JSON & Handling AJAX Errors
+
+You can also use $.getJSON() method to GET and load JSON data from the server. Depending on whether the request was a success or failure, you can also chain below commands to delegate the following actions:
+
+```JavaScript
+.done()   // defines an event to fire upon successful request
+.fail()   // "---------------------------" failed request
+.always() // fires always
+```
